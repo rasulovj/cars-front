@@ -16,11 +16,12 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import Wrapper from "./wrapper";
+import Image from "next/image";
 
 const Hero = () => {
   const [selected, setSelected] = useState("all");
 
-  const { register, handleSubmit, setValue, watch } = useForm({
+  const { handleSubmit, setValue } = useForm({
     defaultValues: {
       make: "",
       location: "",
@@ -126,7 +127,7 @@ const Hero = () => {
                   </Select>
 
                   {/* Divider */}
-                  <div className="w-px bg-gray-300 " />
+                  <div className="w-px bg-gray-300" />
 
                   {/* Year To */}
                   <Select onValueChange={(val) => setValue("yearTo", val)}>
@@ -152,7 +153,7 @@ const Hero = () => {
                   </SelectContent>
                 </Select>
 
-                <div className="flex w-full rounded-md overflow-hidden border  not-dark:bg-white/90">
+                <div className="flex w-full rounded-md overflow-hidden border not-dark:bg-white/90">
                   {/* Price From */}
                   <Input
                     placeholder="$ Price from"
@@ -160,7 +161,7 @@ const Hero = () => {
                   />
 
                   {/* Divider */}
-                  <div className="w-px bg-gray-300 " />
+                  <div className="w-px bg-gray-300" />
 
                   {/* Price To */}
                   <Input
@@ -194,9 +195,11 @@ const Hero = () => {
       </Wrapper>
 
       {/* Foreground Car Image */}
-      <img
+      <Image
         src="/image.png"
         alt="Hero Car"
+        width={500}
+        height={500}
         className="
           absolute
           max-w-[1300px]

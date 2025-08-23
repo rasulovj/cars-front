@@ -49,7 +49,7 @@ const BodyTypes = () => {
         {bodyTypes.map((item, index) => (
           <div
             key={index}
-            className="bg-[#F5F7FA] p-4 rounded-lg text-center transition"
+            className="bg-accent p-4 rounded-lg text-center transition"
           >
             <img
               src={item.image}
@@ -73,7 +73,7 @@ const BodyTypes = () => {
         >
           {bodyTypes.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-[#F5F7FA] p-4 rounded-lg text-center">
+              <div className="bg-background p-4 rounded-lg text-center">
                 <img
                   src={item.image}
                   alt={item.type}

@@ -14,29 +14,27 @@ import {
 import { Moon, Plus, Sun, User, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { setTheme } = useTheme();
+  const router = useRouter();
 
   return (
     <div>
       <Wrapper>
         <div className="flex items-center justify-between h-[72px]">
-          {/* Logo */}
-          <div>
+          <Link href={"/"} className="cursor-pointer">
             <Image src="/logo.svg" alt="logo" width={120} height={120} />
-          </div>
+          </Link>
 
-          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-6">
             <Link href="/">New cars</Link>
             <Link href="/">Used cars</Link>
             <Link href="/">Contact us</Link>
           </div>
 
-          {/* Desktop Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            {/* Theme toggle */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon">
@@ -58,18 +56,15 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Login */}
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => router.push("/login")}>
               <User />
             </Button>
 
-            {/* Sell car */}
             <Button className="bg-pink-bg text-white">
               <Plus /> Sell car
             </Button>
           </div>
 
-          {/* Mobile Menu */}
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
@@ -78,16 +73,13 @@ const Navbar = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="flex flex-col gap-6 p-6">
-                {/* Links */}
                 <div className="flex flex-col gap-4">
                   <Link href="/">New cars</Link>
                   <Link href="/">Used cars</Link>
                   <Link href="/">Contact us</Link>
                 </div>
 
-                {/* Actions */}
                 <div className="flex flex-col gap-4 mt-4">
-                  {/* Theme toggle */}
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" className="flex gap-2">
@@ -109,7 +101,10 @@ const Navbar = () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
 
-                  <Button variant="outline">
+                  <Button
+                    variant="outline"
+                    onClick={() => router.push("/login")}
+                  >
                     <User /> Login
                   </Button>
                   <Button className="bg-pink-bg text-white">
