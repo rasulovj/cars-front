@@ -34,7 +34,18 @@ const Hero = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  type FormData = {
+    make: string;
+    location: string;
+    model: string;
+    yearFrom: string;
+    yearTo: string;
+    bodyType: string;
+    priceFrom: string;
+    priceTo: string;
+  };
+
+  const onSubmit = (data: FormData) => {
     toast("You submitted the following values", {
       description: (
         <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
@@ -77,7 +88,6 @@ const Hero = () => {
               ))}
             </ToggleGroup>
 
-            {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2  gap-4">
                 <Select onValueChange={(val) => setValue("make", val)}>
