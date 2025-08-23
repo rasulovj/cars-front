@@ -24,8 +24,9 @@ const Navbar = () => {
     <div>
       <Wrapper>
         <div className="flex items-center justify-between h-[72px]">
-          <Link href={"/"} className="cursor-pointer">
-            <Image src="/logo.svg" alt="logo" width={120} height={120} />
+          <Link href={"/"} className="cursor-pointer flex items-center gap-2">
+            <Image src="/icon.svg" alt="logo" width={40} height={40} />{" "}
+            <p className="text-xl font-bold">Finder</p>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">

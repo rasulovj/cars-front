@@ -13,8 +13,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div>
-          {pathname == "/login" && "/register" ? null : <Navbar />}
-          {/* <Navbar /> */}
+          {pathname === "/login" || pathname === "/register" ? null : (
+            <Navbar />
+          )}
+
           <main className="">{children}</main>
         </div>
       </body>
