@@ -15,4 +15,3 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
-console.log(process.env.BACK_URL);

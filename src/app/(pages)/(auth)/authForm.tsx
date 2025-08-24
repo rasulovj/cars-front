@@ -19,6 +19,7 @@ import { ArrowLeft } from "lucide-react";
 import { useLogin, useRegister } from "@/services/authServices";
 import Link from "next/link";
 import { LoginFormValues } from "@/types";
+import Cookies from "js-cookie";
 
 type AuthFormProps = {
   mode: "login" | "register";
@@ -38,14 +39,11 @@ export function AuthForm({ mode }: AuthFormProps) {
         toast.success(
           mode === "login" ? "Login successful!" : "Registration successful!",
           {
-            description:
-              mode === "login"
-                ? `Welcome back, ${res.user.firstName}`
-                : `Welcome, ${res.user.firstName}`,
+            description: mode === "login" ? `Welcome back` : `Welcome`,
           }
         );
-        localStorage.setItem("token", res.token);
-        router.push("/");
+        Cookies.set("token", res.token);
+        router.push("/profile");
       },
       onError: (error: Error) => {
         toast.error(mode === "login" ? "Login failed" : "Registration failed", {

@@ -12,7 +12,6 @@ export interface LoginResponse {
   token: string;
   user: {
     id: string;
-    firstName: string;
     email: string;
   };
 }

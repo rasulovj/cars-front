@@ -3,6 +3,7 @@ import { api } from "./api";
 import { AxiosError } from "axios";
 import { LoginPayload, LoginResponse } from "@/types";
 
+//Login
 const login = async (userData: LoginPayload): Promise<LoginResponse> => {
   try {
     const { data } = await api.post<LoginResponse>("/auth/login", userData);
@@ -20,6 +21,7 @@ export const useLogin = () => {
   });
 };
 
+//Register
 const register = async (userData: LoginPayload): Promise<LoginResponse> => {
   try {
     const { data } = await api.post<LoginResponse>("/auth/register", userData);
