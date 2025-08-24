@@ -69,9 +69,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu />
-                </Button>
+                <Menu className="cursor-pointer" />
               </SheetTrigger>
               <SheetContent side="right" className="flex flex-col gap-6 p-6">
                 <div className="flex flex-col gap-4">

@@ -56,9 +56,9 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-[736px] bg-[url('/background.png')] bg-cover bg-center flex items-center justify-center overflow-hidden px-4">
+    <div className="relative min-h-[736px] bg-[url('/background.png')] bg-cover bg-center flex items-center justify-center overflow-hidden">
       <Wrapper>
-        <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center  gap-10">
+        <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center gap-10 my-10">
           {/* Search Box */}
           <div className="bg-white/10 backdrop-blur-md p-8 rounded-xl w-full max-w-[750px]">
             {/* Tabs */}
@@ -192,7 +192,7 @@ const Hero = () => {
 
           {/* Text Block */}
           <div className="text-white text-center lg:text-left max-w-md">
-            <h1 className="text-5xl font-bold mb-4">
+            <h1 className="text-4xl md:5xl font-bold mb-4">
               Easy way to find the right car
             </h1>
             <div className="flex items-center justify-center lg:justify-start gap-2 mt-2">
