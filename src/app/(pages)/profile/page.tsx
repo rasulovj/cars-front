@@ -10,20 +10,18 @@ import {
   Star,
   CreditCard,
   Settings,
-  HelpCircle,
   LogOut,
   CircleEllipsis,
 } from "lucide-react";
 import Wrapper from "@/shared/wrapper";
+import MyProfile from "./tabs/myProfile";
 
 const sidebarItems = [
   { label: "My profile", icon: User },
-  { label: "My listings", icon: List },
-  { label: "Reviews", icon: Star },
+  { label: "My ads", icon: List },
   { label: "Favorites", icon: Star },
   { label: "Payment details", icon: CreditCard },
   { label: "Account settings", icon: Settings },
-  { label: "Help center", icon: HelpCircle },
   { label: "Sign out", icon: LogOut },
 ];
 
@@ -84,18 +82,12 @@ export default function Profile() {
 
         {/* Main content */}
         <main className="flex-1 mx-4">
-          <Card className="shadow-md">
+          <Card className="py-4">
             <CardHeader>
               <CardTitle>{activeTab}</CardTitle>
             </CardHeader>
             <CardContent>
-              {activeTab === "My profile" && (
-                <div>
-                  <p className="text-muted-foreground">
-                    Profile details will be shown here.
-                  </p>
-                </div>
-              )}
+              {activeTab === "My profile" && <MyProfile />}
               {activeTab === "Account settings" && (
                 <div>
                   <p className="text-muted-foreground">

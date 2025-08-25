@@ -15,10 +15,13 @@ import { Moon, Plus, Sun, User, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useRouter } from "next/navigation";
+import { useGetCurrentUser } from "@/services/authServices";
 
 const Navbar = () => {
+  const { data: currentUser } = useGetCurrentUser();
   const { setTheme } = useTheme();
   const router = useRouter();
+  console.log(currentUser);
 
   return (
     <div>
@@ -30,8 +33,8 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
-            <Link href="/">New cars</Link>
-            <Link href="/">Used cars</Link>
+            <Link href="/cars">New cars</Link>
+            <Link href="/cars">Used cars</Link>
             <Link href="/">Contact us</Link>
           </div>
 
@@ -57,9 +60,15 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button variant="outline" onClick={() => router.push("/login")}>
-              <User />
-            </Button>
+            {currentUser ? (
+              <Button variant="outline" onClick={() => router.push("/profile")}>
+                <User /> Profile
+              </Button>
+            ) : (
+              <Button variant="outline" onClick={() => router.push("/login")}>
+                <User />
+              </Button>
+            )}
 
             <Button className="bg-pink-bg text-white">
               <Plus /> Sell car
@@ -99,7 +108,14 @@ const Navbar = () => {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-
+                  {currentUser ? (
+                    <Button
+                      variant="outline"
+                      onClick={() => router.push("/profile")}
+                    >
+                      <User /> Profile
+                    </Button>
+                  ) : null}
                   <Button
                     variant="outline"
                     onClick={() => router.push("/login")}

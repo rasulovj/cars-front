@@ -3,11 +3,11 @@ import Cookies from "js-cookie";
 
 export const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_BACK_URL}/api/`,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 });
 
+// Request interceptor
 api.interceptors.request.use((config) => {
   const access_token = Cookies.get("access_token");
   if (access_token) {
@@ -15,3 +15,30 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// Response interceptor (auto-refresh)
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const { data } = await axios.post(
+          `${process.env.NEXT_PUBLIC_BACK_URL}/api/auth/refresh`,
+          {},
+          { withCredentials: true }
+        );
+
+        Cookies.set("access_token", data.access_token);
+        api.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
+        return api(originalRequest);
+      } catch (err) {
+        console.error("Refresh token failed", err);
+      }
+    }
+    return Promise.reject(error);
+  }
+);

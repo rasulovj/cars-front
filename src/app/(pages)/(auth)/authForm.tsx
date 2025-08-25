@@ -42,7 +42,7 @@ export function AuthForm({ mode }: AuthFormProps) {
             description: mode === "login" ? `Welcome back` : `Welcome`,
           }
         );
-        Cookies.set("token", res.token);
+        Cookies.set("access_token", res.access_token);
         router.push("/profile");
       },
       onError: (error: Error) => {
